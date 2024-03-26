@@ -9,7 +9,7 @@
                     <td><input type="password" name="password" v-model="guestbookVo.password"></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><textarea cols="72" rows="5" v-model="guestbookVo.content"></textarea></td>
+                    <td colspan="4"><textarea cols="72" rows="5" name="content" v-model="guestbookVo.content"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="4"><button type="">등록</button></td>
@@ -24,7 +24,7 @@
                 <tr>
                     <td>{{guestbookVo.no}}</td>
                     <td>{{guestbookVo.name}}</td>
-                    <td>{{ guestbookVo.regDate }}</td>
+                    <td>{{ guestbookVo.date }}</td>
                     <td><router-link v-bind:to="`/delete/${guestbookVo.no}`">삭제</router-link></td>
                 </tr>
                 <tr>
@@ -49,7 +49,8 @@ export default {
             guestbookVo:{
                 name: "",
                 password: "",
-                content: ""
+                content: "",
+                date:""
             }
         };
     },
@@ -58,7 +59,7 @@ export default {
             console.log("클릭");
             axios({
                 method: 'get', // put, post, delete
-                url: 'http://localhost:9000/api/guests',
+                url: 'http://localhost:9000/api/guest/addlist',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
                 //data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
@@ -79,7 +80,7 @@ export default {
             console.log(this.guestbookVo);
             axios({
                 method: 'post', // put, post, delete
-                url: 'http://localhost:9000/api/guests',
+                url: 'http://localhost:9000/api/guest/addlist',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
                 data: this.guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
